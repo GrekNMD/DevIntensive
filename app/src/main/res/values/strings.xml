@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">DevIntensive</string>
+    <string name="app_name">Anton Altgauzen</string>
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet,consectetur adipiscing elit.
+        Integer molestie pellentesque massa, eget laoreet metus consectetur sit amet.
+    </string>
+    <string name="header_rating">
+        Rating
+    </string>
+    <string name="header_projects">
+        Projects
+    </string>
+    <string name="header_code_lines">
+        Code-lines
+    </string>
+    <string name="header_phone">
+        Phone number
+    </string>
+    <string name="header_email">
+        E-mail
+    </string>
+    <string name="header_vk_profile">
+        VK profile
+    </string>
+    <string name="header_repository">
+        Repository
+    </string>
+    <string name="header_about">
+        About
+    </string>
 </resources>

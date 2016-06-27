@@ -1,16 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.activities.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:orientation="vertical">
+
+        //main layer
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/spacing_medial_24"
+            android:paddingTop="@dimen/spacing_medial_24">
+
+            <LinearLayout
+                style="@style/main_activity_title_item_container.side">
+                <TextView
+                    style="@style/main_activity_title_caption"
+                    android:text="5"/>
+                <TextView
+                    style="@style/main_activity_title_text"
+                    android:text="@string/header_rating"/>
+            </LinearLayout>
+
+            <View style="@style/main_activity_vertical_divider"/>
+
+            <LinearLayout
+                style="@style/main_activity_title_item_container">
+                <TextView
+                    style="@style/main_activity_title_caption"
+                    android:text="5"/>
+                <TextView
+                    style="@style/main_activity_title_text"
+                    android:text="@string/header_code_lines"/>
+            </LinearLayout>
+
+            <View style="@style/main_activity_vertical_divider"/>
+
+            <LinearLayout
+                style="@style/main_activity_title_item_container.side">
+                <TextView
+                    style="@style/main_activity_title_caption"
+                    android:text="5"/>
+                <TextView
+                    style="@style/main_activity_title_text"
+                    android:text="@string/header_projects"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        //phone
+        <LinearLayout style="@style/main_activity_itemLayout">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_call_black_24dp"/>
+
+            <LinearLayout style="@style/main_activity_textInputLayout_container">
+                <android.support.design.widget.TextInputLayout
+                    style="@style/main_activity_textInputLayout">
+                    <EditText
+                        style="@style/main_activity_textEdit"
+                        android:id="@+id/phone_et"
+                        android:hint="@string/header_phone"
+                        android:inputType="phone"
+                        android:text="0545953586"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"
+                android:src="@drawable/ic_phone_in_talk_black_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/main_activity_divider"/>
+
+        //email
+        <LinearLayout style="@style/main_activity_itemLayout">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_email_black_24dp"/>
+
+            <LinearLayout style="@style/main_activity_textInputLayout_container">
+                <android.support.design.widget.TextInputLayout
+                    style="@style/main_activity_textInputLayout">
+                    <EditText
+                        style="@style/main_activity_textEdit"
+                        android:id="@+id/email_et"
+                        android:hint="@string/header_email"
+                        android:inputType="textEmailAddress"
+                        android:text="email@gmail.com"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"
+                android:src="@drawable/ic_send_black_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/main_activity_divider"/>
+
+        //vk profile
+        <LinearLayout style="@style/main_activity_itemLayout">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_vk_grey_24dp"/>
+
+            <LinearLayout style="@style/main_activity_textInputLayout_container">
+                <android.support.design.widget.TextInputLayout
+                    style="@style/main_activity_textInputLayout">
+                    <EditText
+                        style="@style/main_activity_textEdit"
+                        android:id="@+id/vk_et"
+                        android:hint="@string/header_vk_profile"
+                        android:inputType="text"
+                        android:text="vk.com/id167541569"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"
+                android:src="@drawable/ic_visibility_black_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/main_activity_divider"/>
+
+        //github
+        <LinearLayout style="@style/main_activity_itemLayout">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_github_grey_24dp"/>
+
+            <LinearLayout style="@style/main_activity_textMultilineInputLayout_container">
+                <android.support.design.widget.TextInputLayout
+                    style="@style/main_activity_textInputLayout">
+                    <EditText
+                        style="@style/main_activity_textEdit"
+                        android:id="@+id/git_et"
+                        android:hint="@string/header_repository"
+                        android:inputType="textMultiLine"
+                        android:text="github.com/GrekNMD/DevIntensive"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"
+                android:src="@drawable/ic_visibility_black_24dp"/>
+        </LinearLayout>
+
+        <View style="@style/main_activity_divider"/>
+
+        //about
+        <LinearLayout style="@style/main_activity_itemLayout">
+
+            <ImageView
+                style="@style/icon.left"
+                android:src="@drawable/ic_room_black_24dp"/>
+
+            <LinearLayout style="@style/main_activity_textMultilineInputLayout_container">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/main_activity_textInputLayout">
+
+                    <EditText
+                        style="@style/main_activity_textEdit"
+                        android:id="@+id/about_et"
+                        android:hint="@string/header_about"
+                        android:inputType="textMultiLine"
+                        android:text="@string/lorem_ipsum"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
