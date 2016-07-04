@@ -28,4 +28,12 @@
     <string name="header_about">
         About
     </string>
+
+    <!-- drawer header string-->
+    <string name="drawer_header_user_name">
+        Altgauzen Anton
+    </string>
+    <string name="drawer_header_user_email">
+        Greknmd@gmail.com
+    </string>
 </resources>
