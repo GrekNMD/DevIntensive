@@ -29,6 +29,9 @@
         About
     </string>
 
+
+    <string name="user_profile.placeholder.image">Change profile photo</string>
+
     <!-- drawer header string-->
     <string name="drawer_header_user_name">
         Altgauzen Anton
@@ -36,4 +39,25 @@
     <string name="drawer_header_user_email">
         Greknmd@gmail.com
     </string>
+    <string name="user_profile.dialog.galery">Load from gallery</string>
+    <string name="user_profile.dialog.camera">Take a photo</string>
+    <string name="user_profile.dialog.cancel">Cancel</string>
+    <string name="user_profile.dialog.title">Change profile photo</string>
+    <string name="user_profile.chose.message">Chose photo</string>
+    <!--Login screen-->
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="mail">greknmd@gmail.com</string>
+    <string name="e_mail">E-mail</string>
+
+    <string name="emailValid">"[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+	            "\\@" +
+	            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+	            "(" +
+	                "\\." +
+	                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+	            ")+"</string>
+
+
 </resources>
