@@ -87,6 +87,58 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    //main layer
+    <LinearLayout
+        android:id="@+id/user_info_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_info_size"
+        android:background="@color/grey"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/spacing_medial_24"
+        android:paddingTop="@dimen/spacing_medial_24"
+        app:layout_behavior=".ui.behaviors.UserInfoBehavior"
+        app:behavior_min_height="@dimen/size_medium_56"
+        >
+
+        <LinearLayout
+            style="@style/main_activity_title_item_container.side">
+            <TextView
+                style="@style/main_activity_title_caption"
+                android:id="@+id/user_info_rait_txt"
+                android:text="5"/>
+            <TextView
+                style="@style/main_activity_title_text"
+                android:text="@string/header_rating"/>
+        </LinearLayout>
+
+        <View style="@style/main_activity_vertical_divider"/>
+
+        <LinearLayout
+            style="@style/main_activity_title_item_container">
+            <TextView
+                style="@style/main_activity_title_caption"
+                android:id="@+id/user_info_code_lines_txt"
+                android:text="5"/>
+            <TextView
+                style="@style/main_activity_title_text"
+                android:text="@string/header_code_lines"/>
+        </LinearLayout>
+
+        <View style="@style/main_activity_vertical_divider"/>
+
+        <LinearLayout
+            style="@style/main_activity_title_item_container.side">
+            <TextView
+                style="@style/main_activity_title_caption"
+                android:id="@+id/user_info_projects_txt"
+                android:text="5"/>
+            <TextView
+                style="@style/main_activity_title_text"
+                android:text="@string/header_projects"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 <include layout="@layout/user_profile_content"/>
 
     <android.support.design.widget.FloatingActionButton
