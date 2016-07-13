@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView
+    android:id="@+id/nested_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_behavior=".ui.behaviors.CustomNestedScrollBehavior"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -11,50 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        //main layer
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/grey"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/spacing_medial_24"
-            android:paddingTop="@dimen/spacing_medial_24">
 
-            <LinearLayout
-                style="@style/main_activity_title_item_container.side">
-                <TextView
-                    style="@style/main_activity_title_caption"
-                    android:text="5"/>
-                <TextView
-                    style="@style/main_activity_title_text"
-                    android:text="@string/header_rating"/>
-            </LinearLayout>
-
-            <View style="@style/main_activity_vertical_divider"/>
-
-            <LinearLayout
-                style="@style/main_activity_title_item_container">
-                <TextView
-                    style="@style/main_activity_title_caption"
-                    android:text="5"/>
-                <TextView
-                    style="@style/main_activity_title_text"
-                    android:text="@string/header_code_lines"/>
-            </LinearLayout>
-
-            <View style="@style/main_activity_vertical_divider"/>
-
-            <LinearLayout
-                style="@style/main_activity_title_item_container.side">
-                <TextView
-                    style="@style/main_activity_title_caption"
-                    android:text="5"/>
-                <TextView
-                    style="@style/main_activity_title_text"
-                    android:text="@string/header_projects"/>
-            </LinearLayout>
-
-        </LinearLayout>
 
         //phone
         <LinearLayout style="@style/main_activity_itemLayout">

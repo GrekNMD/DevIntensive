@@ -8,11 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -27,21 +25,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatImageHelper;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.devintensive.devintensive.R;
 import com.devintensive.devintensive.data.managers.DataManager;
-import com.devintensive.devintensive.utils.CircleTransform;
 import com.devintensive.devintensive.utils.ConstantManager;
 import com.devintensive.devintensive.utils.RoundImage;
 import com.squareup.picasso.Picasso;
@@ -53,8 +48,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -90,6 +83,9 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
 
     private List<EditText> mUserInfoViews;
 
+    private TextView mUserValueRating,mUserValueCodeLines,mUserValueProjects,mDrawerUserName,mDrawerUseremail;
+    private List<TextView> mUserValueViews;
+
     private AppBarLayout.LayoutParams mAppBarParams = null;
     private File mPhotoFile = null;
     private Uri mSelectedImage = null;
@@ -120,7 +116,11 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
         mUserGit = (EditText) findViewById(R.id.git_et);
         mUserBio = (EditText) findViewById(R.id.about_et);
 
-
+        mUserValueRating = (TextView) findViewById(R.id.user_info_rait_txt);
+        mUserValueCodeLines = (TextView)findViewById(R.id.user_info_code_lines_txt);
+        mUserValueProjects = (TextView)findViewById(R.id.user_info_projects_txt);
+        mDrawerUserName=(TextView) findViewById(R.id.user_name_txt);
+        mDrawerUseremail=(TextView) findViewById(R.id.user_email_txt);
 
 
 
@@ -131,10 +131,18 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
         mUserInfoViews.add(mUserGit);
         mUserInfoViews.add(mUserBio);
 
+        mUserValueViews = new ArrayList<>();
+        mUserValueViews.add(mUserValueRating);
+        mUserValueViews.add(mUserValueCodeLines);
+        mUserValueViews.add(mUserValueProjects);
+
 
         setupToolbar();
         setupDrawer();
-        loadUserInfoValue();
+        initUserFields();
+        initUserInfoValue();
+        updateUserDrawer();
+
         Picasso.with(this)
                 .load(mDataManager.getPreferencesManager().LoadUserPhoto())
                 .placeholder(R.drawable.avatar_image_2) //TODO:make  placeholder transformation + crop
@@ -268,7 +276,9 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
     }
 
 
+private void updateUserDrawer(){
 
+}
 
     /**
      * profile placeholder img button onClick
@@ -397,26 +407,33 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
                 unlockToolbar();
                 mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
 
-                saveUserInfoValue();
+                saveUserFields();
 
 
             }
         }
     }
 
-    private void loadUserInfoValue() {
+    private void initUserFields() {
         List<String> userData = mDataManager.getPreferencesManager().loadUserProfileData();
         for (int i = 0; i < userData.size(); i++) {
             mUserInfoViews.get(i).setText(userData.get(i));
         }
     }
 
-    private void saveUserInfoValue() {
+    private void saveUserFields() {
         List<String> userData = new ArrayList<>();
         for (EditText userFieldView : mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
         }
         mDataManager.getPreferencesManager().saveUserProfileData(userData);
+    }
+
+    private void initUserInfoValue(){
+        List<String> userData = mDataManager.getPreferencesManager().loadUserProfileValues();
+        for (int i = 0;i<userData.size();i++){
+            mUserValueViews.get(i).setText(userData.get(i));
+        }
     }
 
     private void loadPhotoFromGallery() {
