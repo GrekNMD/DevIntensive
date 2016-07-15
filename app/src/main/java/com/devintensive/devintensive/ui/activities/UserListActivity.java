@@ -1,5 +1,6 @@
 package com.devintensive.devintensive.ui.activities;
 
+import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -7,6 +8,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import com.devintensive.devintensive.R;
 import com.devintensive.devintensive.data.managers.DataManager;
 import com.devintensive.devintensive.data.network.res.UserListRes;
+import com.devintensive.devintensive.data.storage.models.UserDTO;
 import com.devintensive.devintensive.ui.adapters.UsersAdapter;
 import com.devintensive.devintensive.utils.ConstantManager;
 
@@ -48,7 +52,8 @@ public class UserListActivity extends AppCompatActivity {
         mNavigationDrawer = (DrawerLayout)findViewById(R.id.navigation_drawer);
         mRecyclerView = (RecyclerView)findViewById(R.id.user_list);
 
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
         setupToolbar();
         setupDrawer();
         loadUsers();
@@ -75,9 +80,20 @@ public class UserListActivity extends AppCompatActivity {
             public void onResponse(Call<UserListRes> call, Response<UserListRes> response) {
                 try{
                     mUsers = response.body().getData();
-                    mUsersAdapter = new UsersAdapter(mUsers);
+                    mUsersAdapter = new UsersAdapter(mUsers, new UsersAdapter.UsersViewHolder.CustomClickListener(){
+
+                        /* open new activity and transfer user data*/
+
+                        @Override
+                        public void onUserItemClickListener(int position) {
+                            UserDTO userDTO = new UserDTO(mUsers.get(position));
+                            Intent profileIntent = new Intent(UserListActivity.this, ProfileUserActivity.class);
+                            profileIntent.putExtra(ConstantManager.PARCELABLE_KEY,userDTO);
+                            startActivity(profileIntent);
+                        }
+                    });
                     mRecyclerView.setAdapter(mUsersAdapter);
-                } catch (NullPointerException e){
+               } catch (NullPointerException e){
                     Log.e(TAG,e.toString());
                     showSnackbar("Something wrong");
                 }
