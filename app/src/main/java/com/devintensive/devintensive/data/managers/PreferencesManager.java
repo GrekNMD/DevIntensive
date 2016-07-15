@@ -17,6 +17,7 @@ public class PreferencesManager {
     private String userName;
 
     private static final String[] USER_FIELDS = {
+            ConstantManager.USER_NAME_KEY,
             ConstantManager.USER_PHONE_KEY,
             ConstantManager.USER_EMAIL_KEY,
             ConstantManager.USER_VK_KEY,
@@ -39,11 +40,13 @@ public class PreferencesManager {
         this.mSharedPreferences = DevintensiveApplication.getSharedPreferences();
     }
 
+
+    /*Save user data on local change without name, userFields have all data except name of user,but USER_FIELDS[0] have name of user*/
     public void saveUserProfileData(List<String> userFields){
         SharedPreferences.Editor editor = mSharedPreferences.edit();
 
         for (int i = 0; i < USER_FIELDS.length; i++) {
-            editor.putString(USER_FIELDS[i], userFields.get(i));
+            editor.putString(USER_FIELDS[i+1], userFields.get(i));
         }
         editor.apply();
     }
@@ -105,12 +108,12 @@ public class PreferencesManager {
         return mSharedPreferences.getString(ConstantManager.USER_ID_KEY,"null");
     }
 
-    public void saveUserProfileDataFields(List<String> userDataFields,String name){
+    /* save data from network to @userDataFields */
+    public void saveUserProfileDataFields(List<String> userDataFields){
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         for (int i = 0; i < userDataFields.size(); i++) {
             editor.putString(USER_FIELDS[i], userDataFields.get(i));
         }
-        userName = name;
         editor.apply();
     }
 

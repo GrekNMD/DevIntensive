@@ -8,6 +8,7 @@ public interface ConstantManager {
 
     String EDIT_MOD_KEY="EDIT_MOD_KEY";
 
+    String USER_NAME_KEY = "USER_NAME_KEY";
     String USER_PHONE_KEY = "USER_PHONE_KEY";
     String USER_EMAIL_KEY = "USER_EMAIL_KEY";
     String USER_VK_KEY = "USER_VK_KEY";

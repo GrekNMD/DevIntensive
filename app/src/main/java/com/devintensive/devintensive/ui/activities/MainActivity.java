@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
@@ -76,7 +77,7 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
     @BindView(R.id.vk_et)EditText mUserVk;
     @BindView(R.id.git_et)EditText mUserGit;
     @BindView(R.id.about_et)EditText mUserBio;*/
-
+    private View mView;
     private ImageView mImageView;
     private RoundImage mRoundImage;
     private Bitmap bm;
@@ -137,11 +138,16 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
         mUserValueViews.add(mUserValueProjects);
 
 
+
         setupToolbar();
         setupDrawer();
         initUserFields();
         initUserInfoValue();
         updateUserDrawer();
+        roundAvatarOnDrawerHeader();
+
+
+
 
         Picasso.with(this)
                 .load(mDataManager.getPreferencesManager().LoadUserPhoto())
@@ -162,6 +168,17 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
             //showSnackbar("already created");
         }
     }
+
+
+    /* ==== Round Avatar on Drawer Header =====*/
+    private void roundAvatarOnDrawerHeader() {
+        View mView =  ((NavigationView)findViewById(R.id.navigation_view)).getHeaderView(0);
+        ImageView mImageView = (ImageView)mView.findViewById(R.id.avatar_img_view);
+        bm =  BitmapFactory.decodeResource(getResources(), R.drawable.avatar_31);
+        mRoundImage = new RoundImage(bm);
+        mImageView.setImageDrawable(mRoundImage);
+    }
+
     /**
      * Float action button onClick
      */
@@ -276,9 +293,14 @@ public class MainActivity extends BaseActivity /*implements View.OnClickListener
     }
 
 
-private void updateUserDrawer(){
-
-}
+    private void updateUserDrawer(){
+        View mView =  ((NavigationView)findViewById(R.id.navigation_view)).getHeaderView(0);
+        TextView tvName =(TextView)mView.findViewById(R.id.user_name_txt);
+        TextView tvEmail =(TextView)mView.findViewById(R.id.user_email_txt);
+        List<String> userData = mDataManager.getPreferencesManager().loadUserProfileData();
+        tvName.setText(userData.get(0));
+        tvEmail.setText(userData.get(2));
+    }
 
     /**
      * profile placeholder img button onClick
@@ -414,13 +436,19 @@ private void updateUserDrawer(){
         }
     }
 
+    /**
+     *
+     */
     private void initUserFields() {
         List<String> userData = mDataManager.getPreferencesManager().loadUserProfileData();
-        for (int i = 0; i < userData.size(); i++) {
-            mUserInfoViews.get(i).setText(userData.get(i));
+        for (int i = 0; i < userData.size()-1; i++) {
+            mUserInfoViews.get(i).setText(userData.get(i+1));
         }
     }
 
+    /**
+     * save user data on local change
+     */
     private void saveUserFields() {
         List<String> userData = new ArrayList<>();
         for (EditText userFieldView : mUserInfoViews) {
@@ -429,6 +457,9 @@ private void updateUserDrawer(){
         mDataManager.getPreferencesManager().saveUserProfileData(userData);
     }
 
+    /**
+     *
+     */
     private void initUserInfoValue(){
         List<String> userData = mDataManager.getPreferencesManager().loadUserProfileValues();
         for (int i = 0;i<userData.size();i++){

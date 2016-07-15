@@ -6,6 +6,7 @@ import android.content.Context;
 import com.devintensive.devintensive.data.network.RestService;
 import com.devintensive.devintensive.data.network.ServiceGenerator;
 import com.devintensive.devintensive.data.network.req.UserLoginReq;
+import com.devintensive.devintensive.data.network.res.UserListRes;
 import com.devintensive.devintensive.data.network.res.UserModelRes;
 import com.devintensive.devintensive.utils.DevintensiveApplication;
 
@@ -42,7 +43,11 @@ public class DataManager {
     public Call<UserModelRes> loginUser(UserLoginReq userLoginReq){
         return mRestService.loginUser(userLoginReq);
     }
-//endregion
+
+    public Call<UserListRes> getUserList(){
+        return mRestService.getUserList();
+    }
+    //endregion
 
     //region ========= Database ===========
 
