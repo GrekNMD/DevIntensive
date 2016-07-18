@@ -8,6 +8,7 @@ public interface ConstantManager {
 
     String EDIT_MOD_KEY="EDIT_MOD_KEY";
 
+    String USER_NAME_KEY = "USER_NAME_KEY";
     String USER_PHONE_KEY = "USER_PHONE_KEY";
     String USER_EMAIL_KEY = "USER_EMAIL_KEY";
     String USER_VK_KEY = "USER_VK_KEY";
@@ -21,6 +22,9 @@ public interface ConstantManager {
     String USER_RATING_VALUE ="USER_RATING_VALUE";
     String USER_CODE_LINES_VALUE ="USER_CODE_LINES_VALUE";
     String USER_PROJECTS_VALUE ="USER_PROJECTS_VALUE";
+
+    String PARCELABLE_KEY = "PARCELABLE_KEY";
+
 
     int LOAD_PROFILE_PHOTO = 1;
     int REQUEST_CAMERA_PICTURE =99;

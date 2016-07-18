@@ -142,14 +142,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void saveUserValueFields(UserModelRes userModel){
         List<String> userFields = new ArrayList<String>();
+        userFields.add(userModel.getData().getUser().getFirstName()+" "+userModel.getData().getUser().getSecondName());
         userFields.add(userModel.getData().getUser().getContacts().getPhone());
         userFields.add(userModel.getData().getUser().getContacts().getEmail());
         userFields.add(userModel.getData().getUser().getContacts().getVk());
         userFields.add(userModel.getData().getUser().getRepositories().getRepo().get(0).getGit());
         userFields.add(userModel.getData().getUser().getPublicInfo().getBio());
-        String s = userModel.getData().getUser().getFirstName()+" "+userModel.getData().getUser().getSecondName();
+        //String s = userModel.getData().getUser().getFirstName()+" "+userModel.getData().getUser().getSecondName();
 
-        mDataManager.getPreferencesManager().saveUserProfileDataFields(userFields,s);
+        mDataManager.getPreferencesManager().saveUserProfileDataFields(userFields);
 
     }
 }
